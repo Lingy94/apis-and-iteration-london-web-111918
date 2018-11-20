@@ -38,15 +38,46 @@ def print_movies(films)
     puts "Title: #{film["title"]}"
     puts "Director: #{film["director"]}"
     puts "Release Date: #{film["release_date"]}"
-end
+  end
+
+  puts "______________________________"
+  puts "Choose a title for more info or type 'no' to exit"
+  title = gets.chomp.downcase
+    films.each do |film|
+      if title == film["title"].downcase
+        puts "Here's more info for #{film["title"]}..."
+        puts "Episode ID: #{film["episode_id"]}"
+        puts "Producer: #{film["producer"]}"
+        puts "Opening Crawl: " + "#{film["opening_crawl"][0..60]}" + "..."
+      elsif title == "no"
+        puts "Goodbye!"
+        break
+      end
+    end
 end
 
 
 def show_character_movies(character)
   films = get_character_movies_from_api(character)
   print_movies(films)
-  # binding.pry
 end
+
+#def more_info(title)
+#  films.each do |film|
+#    if title == film["title"].downcase
+#      puts "Here's more info for #{film["title"]}..."
+#      puts "Episode ID: #{film["episode_id"]}"
+#      puts "Opening Crawl: " + "#{film["opening_crawl"]}".truncate(60)
+#      puts "Producer: #{film[producer]}"
+#        binding.pry
+#
+#    elsif title == "no"
+#      puts "Goodbye!"
+#    else
+#      puts "Invalid movie name"
+#    end
+#  end
+#end
 
 
 ## BONUS
